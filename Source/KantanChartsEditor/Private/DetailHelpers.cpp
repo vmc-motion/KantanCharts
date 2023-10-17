@@ -66,7 +66,11 @@ namespace DetailHelpers {
 
 			FAssetPickerConfig AssetPickerConfig;
 			// We want any valid object implementing the interface, so any child of UObject as the filter
+#if ENGINE_MAJOR_VERSION >= 5 && ENGINE_MINOR_VERSION >= 1
+			AssetPickerConfig.Filter.ClassPaths.Add(UObject::StaticClass()->GetClassPathName());
+#else
 			AssetPickerConfig.Filter.ClassNames.Add(UObject::StaticClass()->GetFName());
+#endif
 			// Allow child classes
 			AssetPickerConfig.Filter.bRecursiveClasses = true;
 			// Set a delegate for setting the asset from the picker
@@ -113,7 +117,11 @@ namespace DetailHelpers {
 			[
 				// Show the name of the asset or actor
 				SNew(STextBlock)
+#if ENGINE_MAJOR_VERSION >= 5 && ENGINE_MINOR_VERSION >= 1
+				.Font(FAppStyle::GetFontStyle(TEXT("PropertyWindow.NormalFont")))
+#else
 				.Font(FEditorStyle::GetFontStyle(TEXT("PropertyWindow.NormalFont")))
+#endif
 				.Text_Lambda(OnGetCurrentName)
 			];
 

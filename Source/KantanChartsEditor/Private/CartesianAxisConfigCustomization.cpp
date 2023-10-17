@@ -66,7 +66,11 @@ void FCartesianAxisInstanceConfigCustomization::CustomizeHeader(TSharedRef<IProp
 			]
 			+ SHorizontalBox::Slot().Padding(4.0f, 0.0f)
 			[
+#if ENGINE_MAJOR_VERSION >= 5 && ENGINE_MINOR_VERSION >= 1
+				StructPropertyHandle->CreatePropertyNameWidget(DisplayNameOverride, DisplayToolTipOverride)
+#else
 				StructPropertyHandle->CreatePropertyNameWidget(DisplayNameOverride, DisplayToolTipOverride, bDisplayResetToDefault)
+#endif
 			]
 		];
 			
@@ -113,7 +117,11 @@ void FCartesianAxisConfigCustomization::CustomizeHeader(TSharedRef<IPropertyHand
 	HeaderRow
 		.NameContent()
 		[
+#if ENGINE_MAJOR_VERSION >= 5 && ENGINE_MINOR_VERSION >= 1
+			StructPropertyHandle->CreatePropertyNameWidget(DisplayNameOverride, DisplayToolTipOverride)
+#else
 			StructPropertyHandle->CreatePropertyNameWidget(DisplayNameOverride, DisplayToolTipOverride, bDisplayResetToDefault)
+#endif
 		]
 		.ValueContent()
 		[
@@ -192,7 +200,11 @@ void FCartesianRangeBoundCustomization::CustomizeHeader(TSharedRef<IPropertyHand
 	HeaderRow
 		.NameContent()
 		[
+#if ENGINE_MAJOR_VERSION >= 5 && ENGINE_MINOR_VERSION >= 1
+			StructPropertyHandle->CreatePropertyNameWidget(DisplayNameOverride, DisplayToolTipOverride)
+#else
 			StructPropertyHandle->CreatePropertyNameWidget(DisplayNameOverride, DisplayToolTipOverride, bDisplayResetToDefault)
+#endif
 		]
 		.ValueContent()
 		.HAlign(EHorizontalAlignment::HAlign_Fill)

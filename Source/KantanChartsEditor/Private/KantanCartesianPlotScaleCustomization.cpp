@@ -40,7 +40,11 @@ void FKantanCartesianPlotScaleCustomization::CustomizeHeader(TSharedRef<IPropert
 	HeaderRow
 		.NameContent()
 		[
+#if ENGINE_MAJOR_VERSION >= 5 && ENGINE_MINOR_VERSION >= 1
+			StructPropertyHandle->CreatePropertyNameWidget(DisplayNameOverride, DisplayToolTipOverride)
+#else
 			StructPropertyHandle->CreatePropertyNameWidget(DisplayNameOverride, DisplayToolTipOverride, bDisplayResetToDefault)
+#endif
 		]
 		.ValueContent()
 		[
@@ -117,7 +121,11 @@ void FCartesianAxisRangeCustomization::CustomizeHeader(TSharedRef<IPropertyHandl
 	HeaderRow
 		.NameContent()
 		[
+#if ENGINE_MAJOR_VERSION >= 5 && ENGINE_MINOR_VERSION >= 1
+			StructPropertyHandle->CreatePropertyNameWidget(DisplayNameOverride, DisplayToolTipOverride)
+#else
 			StructPropertyHandle->CreatePropertyNameWidget(DisplayNameOverride, DisplayToolTipOverride, bDisplayResetToDefault)
+#endif
 		]
 		.ValueContent()
 		.MinDesiredWidth(125.0f * 2)
